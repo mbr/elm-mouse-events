@@ -187,6 +187,31 @@ view model =
                 , ( "background-color", "rgba(200,0,0,0.5)" )
                 , ( "top", "250px" )
                 , ( "left", "250px" )
+                , ( "z-index", "20" )
+                ]
+            , onMouseEnter MouseEnter
+            , onMouseOver MouseOver
+            , onMouseMove MouseMove
+            , onMouseDown MouseDown
+            , onMouseUp MouseUp
+            , onClick Click
+            , onDoubleClick DoubleClick
+            , onContextMenu ContextMenu
+            , onWheel Wheel
+            , onMouseLeave MouseLeave
+            , onMouseOut MouseOut
+            ]
+            []
+          -- note that defining the z-index is crucial here
+        , div
+            [ style
+                [ ( "width", "200px" )
+                , ( "height", "200px" )
+                , ( "position", "absolute" )
+                , ( "background-color", "rgba(0,200,0,0.5)" )
+                , ( "top", "150px" )
+                , ( "left", "150px" )
+                , ( "z-index", "10" )
                 ]
             , onMouseEnter MouseEnter
             , onMouseOver MouseOver

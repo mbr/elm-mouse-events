@@ -130,6 +130,10 @@ mouseEventDecoder =
 
 {-| A mouse event, maps to the JS event with the same name. See
 https://developer.mozilla.org/en-US/docs/Web/Events for details.
+
+Note that `onMouseEnter` and other events may be prone to strange behaviour
+similar to [Z-fighting](https://en.wikipedia.org/wiki/Z-fighting) they overlap
+while no `z-index` style attribute is set.
 -}
 onMouseEnter : (MouseEvent -> msg) -> Html.Attribute msg
 onMouseEnter target =
