@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "summary": "Mouse events for elm, exposing additional detail like XY-Coordinates",
     "repository": "https://github.com/mbr/elm-mouse-events.git",
     "license": "BSD3",
