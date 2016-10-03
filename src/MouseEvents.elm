@@ -65,7 +65,7 @@ The `Clicked` message will contain the coordinates of the click.
 
 import DOM exposing (Rectangle)
 import Html
-import Html.Events exposing (onWithOptions, defaultOptions)
+import Html.Events exposing (on, defaultOptions)
 import Json.Decode as Decode exposing ((:=))
 
 
@@ -94,18 +94,6 @@ type alias MouseEvent =
 relPos : MouseEvent -> Position
 relPos ev =
     Position (ev.clientPos.x - ev.targetPos.x) (ev.clientPos.y - ev.targetPos.y)
-
-
-preventOpts : Html.Events.Options
-preventOpts =
-    let
-        defs =
-            defaultOptions
-    in
-        { defs
-            | stopPropagation = True
-            , preventDefault = True
-        }
 
 
 mouseEvent : Int -> Int -> Rectangle -> MouseEvent
@@ -137,7 +125,7 @@ while no `z-index` style attribute is set.
 -}
 onMouseEnter : (MouseEvent -> msg) -> Html.Attribute msg
 onMouseEnter target =
-    onWithOptions "mouseenter" preventOpts (Decode.map target mouseEventDecoder)
+    on "mouseenter" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -145,7 +133,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onMouseOver : (MouseEvent -> msg) -> Html.Attribute msg
 onMouseOver target =
-    onWithOptions "mouseover" preventOpts (Decode.map target mouseEventDecoder)
+    on "mouseover" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -153,7 +141,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onMouseMove : (MouseEvent -> msg) -> Html.Attribute msg
 onMouseMove target =
-    onWithOptions "mousemove" preventOpts (Decode.map target mouseEventDecoder)
+    on "mousemove" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -161,7 +149,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onMouseDown : (MouseEvent -> msg) -> Html.Attribute msg
 onMouseDown target =
-    onWithOptions "mousedown" preventOpts (Decode.map target mouseEventDecoder)
+    on "mousedown" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -169,7 +157,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onMouseUp : (MouseEvent -> msg) -> Html.Attribute msg
 onMouseUp target =
-    onWithOptions "mouseup" preventOpts (Decode.map target mouseEventDecoder)
+    on "mouseup" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -177,7 +165,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onClick : (MouseEvent -> msg) -> Html.Attribute msg
 onClick target =
-    onWithOptions "click" preventOpts (Decode.map target mouseEventDecoder)
+    on "click" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -185,7 +173,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onDoubleClick : (MouseEvent -> msg) -> Html.Attribute msg
 onDoubleClick target =
-    onWithOptions "dblclick" preventOpts (Decode.map target mouseEventDecoder)
+    on "dblclick" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -193,7 +181,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onContextMenu : (MouseEvent -> msg) -> Html.Attribute msg
 onContextMenu target =
-    onWithOptions "contextmenu" preventOpts (Decode.map target mouseEventDecoder)
+    on "contextmenu" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -201,7 +189,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onWheel : (MouseEvent -> msg) -> Html.Attribute msg
 onWheel target =
-    onWithOptions "wheel" preventOpts (Decode.map target mouseEventDecoder)
+    on "wheel" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -209,7 +197,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onMouseLeave : (MouseEvent -> msg) -> Html.Attribute msg
 onMouseLeave target =
-    onWithOptions "mouseleave" preventOpts (Decode.map target mouseEventDecoder)
+    on "mouseleave" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -217,7 +205,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onMouseOut : (MouseEvent -> msg) -> Html.Attribute msg
 onMouseOut target =
-    onWithOptions "mouseout" preventOpts (Decode.map target mouseEventDecoder)
+    on "mouseout" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -225,7 +213,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onSelect : (MouseEvent -> msg) -> Html.Attribute msg
 onSelect target =
-    onWithOptions "select" preventOpts (Decode.map target mouseEventDecoder)
+    on "select" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -233,7 +221,7 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onPointerLockChange : (MouseEvent -> msg) -> Html.Attribute msg
 onPointerLockChange target =
-    onWithOptions "pointerlockchange" preventOpts (Decode.map target mouseEventDecoder)
+    on "pointerlockchange" (Decode.map target mouseEventDecoder)
 
 
 {-| A mouse event, maps to the JS event with the same name. See
@@ -241,4 +229,4 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onPointerLockError : (MouseEvent -> msg) -> Html.Attribute msg
 onPointerLockError target =
-    onWithOptions "pointerlockerror" preventOpts (Decode.map target mouseEventDecoder)
+    on "pointerlockerror" (Decode.map target mouseEventDecoder)
