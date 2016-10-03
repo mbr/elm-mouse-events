@@ -1,4 +1,23 @@
-module MouseEvents exposing (..)
+module MouseEvents
+    exposing
+        ( MouseEvent
+        , Position
+        , relPos
+        , onMouseEnter
+        , onMouseOver
+        , onMouseMove
+        , onMouseDown
+        , onMouseUp
+        , onClick
+        , onDoubleClick
+        , onContextMenu
+        , onWheel
+        , onMouseLeave
+        , onMouseOut
+        , onSelect
+        , onPointerLockChange
+        , onPointerLockError
+        )
 
 import DOM exposing (Rectangle)
 import Html
@@ -12,8 +31,13 @@ type alias Position =
 
 type alias MouseEvent =
     { clientPos : Position
-    , target : DOM.Rectangle
+    , targetPos : Position
     }
+
+
+relPos : MouseEvent -> Position
+relPos ev =
+    Position (ev.clientPos.x - ev.targetPos.x) (ev.clientPos.y - ev.targetPos.y)
 
 
 preventOpts : Html.Events.Options
@@ -31,7 +55,7 @@ preventOpts =
 mouseEvent : Int -> Int -> Rectangle -> MouseEvent
 mouseEvent clientX clientY target =
     { clientPos = Position clientX clientY
-    , target = target
+    , targetPos = Position (truncate target.left) (truncate target.top)
     }
 
 
