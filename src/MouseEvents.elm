@@ -6,9 +6,12 @@ import Html.Events exposing (onWithOptions, defaultOptions)
 import Json.Decode as Decode exposing ((:=))
 
 
+type alias Position =
+    { x : Int, y : Int }
+
+
 type alias MouseEvent =
-    { clientX : Int
-    , clientY : Int
+    { clientPos : Position
     , target : DOM.Rectangle
     }
 
@@ -25,9 +28,17 @@ preventOpts =
         }
 
 
+mouseEvent : Int -> Int -> Rectangle -> MouseEvent
+mouseEvent clientX clientY target =
+    { clientPos = Position clientX clientY
+    , target = target
+    }
+
+
 mouseEventDecoder : Decode.Decoder MouseEvent
 mouseEventDecoder =
-    Decode.object3 MouseEvent
+    Decode.object3
+        mouseEvent
         ("clientX" := Decode.int)
         ("clientY" := Decode.int)
         ("target" := DOM.boundingClientRect)
