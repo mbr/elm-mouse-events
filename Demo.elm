@@ -3,11 +3,10 @@ module Demo exposing (..)
 import MouseEvents exposing (..)
 import Html exposing (Html, div, text, code)
 import Html.Attributes exposing (style)
-import Html.App as App
 
 
 main =
-    App.program
+    Html.program
         { init = init
         , subscriptions = subscriptions
         , update = update
