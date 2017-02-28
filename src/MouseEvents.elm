@@ -66,7 +66,7 @@ The `Clicked` message will contain the coordinates of the click.
 import DOM exposing (Rectangle)
 import Html
 import Html.Events exposing (onWithOptions, defaultOptions)
-import Json.Decode as Decode exposing ((:=))
+import Json.Decode as Decode exposing (field)
 
 
 {-| Encodes a position on screen
@@ -117,11 +117,11 @@ mouseEvent clientX clientY target =
 
 mouseEventDecoder : Decode.Decoder MouseEvent
 mouseEventDecoder =
-    Decode.object3
+    Decode.map3
         mouseEvent
-        ("clientX" := Decode.int)
-        ("clientY" := Decode.int)
-        ("target" := DOM.boundingClientRect)
+        (field "clientX" Decode.int)
+        (field "clientY" Decode.int)
+        (field "target" DOM.boundingClientRect)
 
 
 
