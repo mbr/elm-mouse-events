@@ -66,7 +66,6 @@ The `Clicked` message will contain the coordinates of the click.
 import DOM exposing (Rectangle)
 import Html
 import Html.Events exposing (on, defaultOptions)
-import Json.Decode as Decode exposing ((:=))
 import Json.Decode as Decode exposing (field)
 
 
