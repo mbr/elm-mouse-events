@@ -65,7 +65,7 @@ The `Clicked` message will contain the coordinates of the click.
 
 import DOM exposing (Rectangle)
 import Html
-import Html.Events exposing (on, defaultOptions)
+import Html.Events exposing (on, defaultOptions, Options)
 import Json.Decode as Decode exposing (field)
 
 
@@ -154,6 +154,16 @@ onMouseDown target =
 
 {-| A mouse event, maps to the JS event with the same name. See
 https://developer.mozilla.org/en-US/docs/Web/Events for details.
+
+This variant allows passage of propagation and default event options.
+-}
+onMouseDownWithOptions : (MouseEvent -> msg) -> Options -> Html.Attribute msg
+onMouseDownWithOptions target options =
+  onWithOptions "mousedown" options (Decode.map target mouseEventDecoder)
+
+
+{-| A mouse event, maps to the JS event with the same name. See
+https://developer.mozilla.org/en-US/docs/Web/Events for details.
 -}
 onMouseUp : (MouseEvent -> msg) -> Html.Attribute msg
 onMouseUp target =
@@ -230,3 +240,6 @@ https://developer.mozilla.org/en-US/docs/Web/Events for details.
 onPointerLockError : (MouseEvent -> msg) -> Html.Attribute msg
 onPointerLockError target =
     on "pointerlockerror" (Decode.map target mouseEventDecoder)
+
+
+
